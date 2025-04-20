@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clit or Us</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        button { padding: 10px 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Clit or Us</h1>
+    <p>Throw darts and land in the sweet spot to earn crypto!</p>
+    <button onclick="playGame()">Play</button>
+    <p id="result"></p>
+
+    <script>
+        function playGame() {
+            let score = Math.random();
+            if (score > 0.7) {
+                document.getElementById('result').innerText = 'You won tokens!';
+                // Placeholder: Call wallet reward function here
+            } else {
+                document.getElementById('result').innerText = 'Try again!';
+            }
+        }
+    </script>
+</body>
+</html>

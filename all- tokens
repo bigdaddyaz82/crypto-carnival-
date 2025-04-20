@@ -1,0 +1,40 @@
+import os
+import zipfile
+
+# Define folder structure
+folder_structure = {
+    "": ["index.html", "style.css"],
+    "scripts": ["main.js"],
+    "games": [
+        "shooter.html", "toss.html", "gspot.html", "clitorus.html",
+        "wackmeme.html", "dob.html"
+    ],
+    "tokens": ["token-map.json"],
+    "assets/images": []
+}
+
+# Create the folder and file structure
+base_path = "/mnt/data/crypto-carnival"
+os.makedirs(base_path, exist_ok=True)
+
+for folder, files in folder_structure.items():
+    folder_path = os.path.join(base_path, folder)
+    os.makedirs(folder_path, exist_ok=True)
+    for file in files:
+        file_path = os.path.join(folder_path, file)
+        with open(file_path, "w") as f:
+            if file == "token-map.json":
+                f.write('{\n  "SOBX": "shooter",\n  "TOSS": "toss",\n  "Wack Meme": "wackmeme",\n  "DOB": "dob",\n  "The G Spot": "gspot",\n  "Clit or Us": "clitorus"\n}')
+            else:
+                f.write(f"<!-- Placeholder for {file} -->")
+
+# Zip the folder
+zip_path = "/mnt/data/crypto-carnival.zip"
+with zipfile.ZipFile(zip_path, 'w') as zipf:
+    for root, dirs, files in os.walk(base_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            arcname = os.path.relpath(file_path, base_path)
+            zipf.write(file_path, arcname)
+
+zip_path
